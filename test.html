@@ -3,63 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <title>KM → Meilen Test</title>
-  <link href="https://cdn.jsdelivr.net/npm/mocha/mocha.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/mocha@10.2.0/mocha.min.css" rel="stylesheet" />
   <style>
     body {
       font-family: sans-serif;
       padding: 20px;
     }
-  
     #mocha {
-      margin-top: 30px;
-      background: #f3f3f3;
-      padding: 20px;
-      border-radius: 8px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+  <h1>KM → Meilen: Unit Tests</h1>
   <div id="mocha"></div>
 
-  <!-- Mocha + Chai laden -->
-  <script src="https://cdn.jsdelivr.net/npm/mocha/mocha.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chai/chai.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mocha@10.2.0/mocha.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chai@4.3.7/chai.js"></script>
 
   <script>
-    window.onload = function () {
-      mocha.setup('bdd');
-      const expect = chai.expect;
+    mocha.setup("bdd");
+    const expect = chai.expect;
 
-      // Die Funktion, die getestet wird
-      function kmToMiles(km) {
-        return km * 0.621371;
-      }
+    // zu testende funktion
+    function kmToMiles(km) {
+      return km * 0.621371;
+    }
 
-      // Testfälle
-      describe('kmToMiles()', function () {
-
-        it('sollte 1 Kilometer korrekt in Meilen umrechnen', function () {
-          const input = 1;
-          const result = kmToMiles(input);
-          expect(result).to.be.closeTo(0.621371, 0.000001);
-        });
-
-        it('sollte 0 Kilometer korrekt behandeln', function () {
-          const input = 0;
-          const result = kmToMiles(input);
-          expect(result).to.equal(0);
-        });
-
-        it('sollte auch mit Kommazahlen funktionieren', function () {
-          const input = 2.5;
-          const result = kmToMiles(input);
-          expect(result).to.be.closeTo(1.5534275, 0.000001);
-        });
-
+    describe("kmToMiles()", function () {
+      it("sollte 1 Kilometer korrekt in Meilen umrechnen", function () {
+        // GIVEN
+        const input = 1;
+        // WHEN
+        const result = kmToMiles(input);
+        // THEN
+        expect(result).to.be.closeTo(0.621371, 0.000001);
       });
 
-      mocha.run();
-    };
+      it("sollte 0 Kilometer korrekt behandeln", function () {
+        // GIVEN
+        const input = 0;
+        // WHEN
+        const result = kmToMiles(input);
+        // THEN
+        expect(result).to.equal(0);
+      });
+
+      it("sollte auch mit Kommazahlen funktionieren", function () {
+        // GIVEN
+        const input = 2.5;
+        // WHEN
+        const result = kmToMiles(input);
+        // THEN
+        expect(result).to.be.closeTo(1.5534275, 0.000001);
+      });
+    });
+
+    mocha.run();
   </script>
 </body>
 </html>
