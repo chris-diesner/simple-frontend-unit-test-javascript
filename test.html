@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>KM → Meilen Test</title>
-  <link href="https://cdn.jsdelivr.net/npm/mocha/mocha.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/mocha/mocha.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chai/chai.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/mocha/mocha.css" rel="stylesheet">
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+  </style>
 </head>
 <body>
   <div id="mocha"></div>
 
+  <!-- Mocha + Chai laden -->
+  <script src="https://cdn.jsdelivr.net/npm/mocha/mocha.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chai/chai.js"></script>
+
   <script>
-    window.addEventListener('load', function () {
+    window.onload = function () {
       mocha.setup('bdd');
       const expect = chai.expect;
 
-      // Funktion definieren
+      // Die Funktion, die getestet wird
       function kmToMiles(km) {
         return km * 0.621371;
       }
 
-      // Tests definieren
+      // Testfälle
       describe('kmToMiles()', function () {
 
         it('sollte 1 Kilometer korrekt in Meilen umrechnen', function () {
@@ -40,10 +45,11 @@
           const result = kmToMiles(input);
           expect(result).to.be.closeTo(1.5534275, 0.000001);
         });
+
       });
 
       mocha.run();
-    });
+    };
   </script>
 </body>
 </html>
