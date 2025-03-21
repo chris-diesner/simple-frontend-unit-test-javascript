@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>KM - Meilen Umrechner</title>
+</head>
+<body>
+  <h1>Kilometer in Meilen umrechnen</h1>
+  <input type="number" id="kmInput" placeholder="Kilometer eingeben" />
+  <button onclick="convert()">Umrechnen</button>
+  <p id="output"></p>
+
+  <script>
+    function kmToMiles(km) {
+      return km * 0.621371;
+    }
+
+    function convert() {
+      const km = parseFloat(document.getElementById('kmInput').value);
+      const miles = kmToMiles(km);
+      document.getElementById('output').textContent = `${km} km = ${miles.toFixed(2)} Meilen`;
+    }
+  </script>
+</body>
+</html>
