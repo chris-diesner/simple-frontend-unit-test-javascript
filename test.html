@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>KM → Meilen Test</title>
+  <link href="https://cdn.jsdelivr.net/npm/mocha/mocha.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/mocha/mocha.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chai/chai.js"></script>
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <script>
+    mocha.setup('bdd');
+    const expect = chai.expect;
+  </script>
+
+  <script>
+    function kmToMiles(km) {
+      return km * 0.621371;
+    }
+  </script>
+
+  <script>
+    describe('kmToMiles()', function () {
+  
+      // Testfall 1: Normale Umrechnung 1 km in Meilen
+      it('sollte 1 Kilometer korrekt in Meilen umrechnen', function () {
+        // GIVEN
+        const input = 1;
+  
+        // WHEN 
+        const result = kmToMiles(input);
+  
+        // THEN 
+        expect(result).to.be.closeTo(0.621371, 0.000001);
+      });
+  
+      // Testfall 2: Spezialfall 0 km
+      it('sollte 0 Kilometer korrekt behandeln', function () {
+        // GIVEN
+        const input = 0;
+  
+        // WHEN
+        const result = kmToMiles(input);
+  
+        // THEN
+        expect(result).to.equal(0);
+      });
+  
+      // Testfall 3: Dezimalwerte verarbeiten
+      it('sollte auch mit Kommazahlen funktionieren', function () {
+        // GIVEN
+        const input = 2.5;
+  
+        // WHEN
+        const result = kmToMiles(input);
+  
+        // THEN
+        expect(result).to.be.closeTo(1.5534275, 0.000001);
+      });
+    });
+  
+    mocha.run();
+  </script>
+  
+</body>
+</html>
